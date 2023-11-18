@@ -5,7 +5,7 @@ import enums.Padezhy;
 import interfaces.Flyable;
 import interfaces.Storytellable;
 
-public class Spaceship extends SpaceObject{
+public class Spaceship extends SpaceObject {
     public Direction direction = null;
     public int speed;
 

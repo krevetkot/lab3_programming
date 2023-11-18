@@ -5,7 +5,7 @@ import enums.Padezhy;
 import interfaces.Speakable;
 import interfaces.Storytellable;
 
-public class Shortys extends AbstractHero {
+public class Shortys extends AbstractHero{
     public Shortys(String profession){
         super(profession);
         System.out.println(makeCharacterName(Padezhy.I) + " созданы");
