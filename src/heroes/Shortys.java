@@ -5,7 +5,7 @@ import enums.Padezhy;
 import interfaces.Speakable;
 import interfaces.Storytellable;
 
-public class Shortys extends AbstractHero{
+public class Shortys extends AbstractHero implements Storytellable, Speakable {
     public Shortys(String profession){
         super(profession);
         System.out.println(makeCharacterName(Padezhy.I) + " созданы");
@@ -37,5 +37,23 @@ public class Shortys extends AbstractHero{
         System.out.println(
                 this.makeCharacterName(Padezhy.I) + " намереваются: " + intention
         );
+    }
+
+    public void SowSeeds(){
+        //какие-то активные действия
+        System.out.println(makeCharacterName(Padezhy.I) + " сеят гигантские семена");
+    }
+
+    public void instigate(Poor poor){
+        if (Math.random()<0.5){
+            poor.obedience = false;
+        }
+        System.out.println(makeCharacterName(Padezhy.I) + " подстрекают бедняков к неповиновению богачам");
+        if (poor.obedience == true){
+            System.out.println(poor.makeCharacterName(Padezhy.I) + " не отреагировали на подстрекательства");
+        }
+        else {
+            System.out.println(poor.makeCharacterName(Padezhy.I) + " больше не повинуются богачам. Ура, мировая революция!");
+        }
     }
 }

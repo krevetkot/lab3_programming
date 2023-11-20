@@ -5,7 +5,7 @@ import enums.Padezhy;
 import interfaces.Speakable;
 import interfaces.Storytellable;
 
-public class Rzhigl extends AbstractHero {
+public class Rzhigl extends AbstractHero implements Storytellable, Speakable {
     public Rzhigl(String name, String profession, String livingPlace){
         super(name, profession, livingPlace);
         System.out.println(makeCharacterName(Padezhy.I) + " создан");

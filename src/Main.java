@@ -1,19 +1,27 @@
 import enums.*;
 import heroes.*;
+import objects.SpaceObject;
 import objects.Spaceship;
 
 public class Main {
+
     public static void main(String[] args) {
 
-        Spaceship spaceship = new Spaceship("космический корабль", Direction.неизвестно, 100);
+        Spaceship spaceship = new Spaceship("космический корабль", Direction.неизвестно, 10);
         Astronoms astronoms = new Astronoms("астрономы", "давилон");
         Spruts spruts = new Spruts("Спрутс", "господин", "давилон");
         Rzhigl rzhigl = new Rzhigl("Ржигль", "главный полицейский комиссар", "давилон");
+        Poor poor = new Poor("бедняки");
         Shortys shortys = new Shortys("коротышки");
 
         astronoms.observe(spaceship);
         spaceship.speedUp(100);
+        while (spaceship.isReadyToEscapeFromGravitation(Direction.Земля)==false){
+            astronoms.makeConclusions("чтобы выйти из сферы земного притяжения, космическому кораблю нужно еще больше разогнаться");
+            spaceship.speedUp(10);
+        }
         astronoms.makeConclusions("космический объект приобрел скорость для выхода из сферы земного притяжения");
+
         spaceship.changeDirection(Direction.Луна);
         astronoms.countTrajectory(spaceship);
 
@@ -30,9 +38,19 @@ public class Main {
         rzhigl.speak("куда высадятся космонавты?", spruts, Dialogue.спросил);
         rzhigl.speak("сколько примерно будет космонавтов?", spruts, Dialogue.спросил);
 
+        if (Math.random()<0.5){
+            System.out.println("меры насчет коротышек не были приняты...");
+            shortys.SowSeeds();
+            shortys.instigate(poor);
+        }
+        else {
+            System.out.println("меры насчет коротышек были успешно приняты :)");
+        }
+
+
         System.out.println("---------------------------------------");
         Astronoms astronoms2 = new Astronoms("астрономы", "давилон");
-        System.out.println(astronoms.equals(astronoms2));
+
         System.out.println(astronoms.hashCode()==astronoms2.hashCode());
         System.out.println(astronoms.hashCode()==rzhigl.hashCode());
 

@@ -5,7 +5,7 @@ import heroes.AbstractHero;
 import interfaces.Flyable;
 import interfaces.Storytellable;
 
-public abstract class SpaceObject implements Flyable, Storytellable{
+public abstract class SpaceObject implements Storytellable{
     private Direction direction;
     private int speed;
     private String type;
@@ -61,5 +61,7 @@ public abstract class SpaceObject implements Flyable, Storytellable{
         result = getType() != null ? 31 * result + getType().hashCode() : 31 * result;
         return result;
     }
+
+
 
 }

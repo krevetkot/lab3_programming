@@ -5,7 +5,7 @@ import enums.Padezhy;
 import interfaces.Flyable;
 import interfaces.Storytellable;
 
-public class Spaceship extends SpaceObject {
+public class Spaceship extends SpaceObject implements Flyable, Storytellable {
     public Direction direction = null;
     public int speed;
 
@@ -38,5 +38,16 @@ public class Spaceship extends SpaceObject {
             character = "космическим кораблем";
         }
         return character;
+    }
+
+    public boolean isReadyToEscapeFromGravitation(Direction location){
+        String place = (String)(location.name());
+        int gravity = place.length()*100;
+        if (getSpeed()>gravity){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

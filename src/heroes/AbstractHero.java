@@ -3,7 +3,7 @@ package heroes;
 import interfaces.Speakable;
 import interfaces.Storytellable;
 
-public abstract class AbstractHero implements Storytellable, Speakable{
+public abstract class AbstractHero implements Storytellable, Speakable {
     private String name;
     private String profession;
     private String livingPlace;
