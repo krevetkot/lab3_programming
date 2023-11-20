@@ -48,14 +48,14 @@ public class Main {
         }
 
 
-        System.out.println("---------------------------------------");
-        Astronoms astronoms2 = new Astronoms("астрономы", "давилон");
-
-        System.out.println(astronoms.hashCode()==astronoms2.hashCode());
-        System.out.println(astronoms.hashCode()==rzhigl.hashCode());
-
-        System.out.println(spruts.toString());
-        System.out.println(astronoms.equals(spaceship));
-        System.out.println(astronoms.hashCode()==spaceship.hashCode());
+//        System.out.println("---------------------------------------");
+//        Astronoms astronoms2 = new Astronoms("астрономы", "давилон");
+//
+//        System.out.println(astronoms.hashCode()==astronoms2.hashCode());
+//        System.out.println(astronoms.hashCode()==rzhigl.hashCode());
+//
+//        System.out.println(spruts.toString());
+//        System.out.println(astronoms.equals(spaceship));
+//        System.out.println(astronoms.hashCode()==spaceship.hashCode());
     }
 }
