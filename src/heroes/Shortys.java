@@ -2,19 +2,20 @@ package heroes;
 
 import enums.Dialogue;
 import enums.Padezhy;
+import enums.Profession;
 import interfaces.Speakable;
 import interfaces.Storytellable;
 
 public class Shortys extends AbstractHero {
-    public Shortys(String profession){
+    public Shortys(Profession profession){
         super(profession);
         System.out.println(makeCharacterName(Padezhy.I) + " созданы");
     }
 
     @Override
-    public void speak(String someSpeech, AbstractHero abstractHero, Dialogue type) {
+    public void speak(String someSpeech, AbstractHero anotherHero, Dialogue type){
         System.out.println(
-                this.makeCharacterName(Padezhy.I) + ' ' + type + ' ' + abstractHero.makeCharacterName(Padezhy.D) + ": " + someSpeech
+                this.makeCharacterName(Padezhy.I) + ' ' + type.getTitle() + ' ' + anotherHero.makeCharacterName(Padezhy.D) + ": " + someSpeech
         );
     }
 
@@ -22,7 +23,7 @@ public class Shortys extends AbstractHero {
     public String makeCharacterName(Padezhy p) {
         String character = "";
         if (p==Padezhy.I){
-            character = this.getProfession();
+            character = this.getProfession().getTitle();
         }
         else if (p==Padezhy.R){
             character = "коротышек";
@@ -49,11 +50,12 @@ public class Shortys extends AbstractHero {
             poor.obedience = false;
         }
         System.out.println(makeCharacterName(Padezhy.I) + " подстрекают бедняков к неповиновению богачам");
-        if (poor.obedience == true){
+        if (poor.obedience){
             System.out.println(poor.makeCharacterName(Padezhy.I) + " не отреагировали на подстрекательства");
         }
         else {
             System.out.println(poor.makeCharacterName(Padezhy.I) + " больше не повинуются богачам. Ура, мировая революция!");
         }
     }
+
 }

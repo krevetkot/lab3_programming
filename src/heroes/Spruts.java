@@ -1,20 +1,22 @@
 package heroes;
 
 import enums.Dialogue;
+import enums.LivingPlace;
 import enums.Padezhy;
+import enums.Profession;
 import interfaces.Speakable;
 import interfaces.Storytellable;
 
 public class Spruts extends AbstractHero {
-    public Spruts(String name, String profession, String livingPlace){
+    public Spruts(String name, Profession profession, LivingPlace livingPlace){
         super(name, profession, livingPlace);
         System.out.println(makeCharacterName(Padezhy.I) + " создан");
     }
 
     @Override
-    public void speak(String someSpeech, AbstractHero abstractHero, Dialogue type) {
+    public void speak(String someSpeech, AbstractHero anotherHero, Dialogue type){
         System.out.println(
-                this.makeCharacterName(Padezhy.I) + ' ' + type + ' ' + abstractHero.makeCharacterName(Padezhy.D) + ": " + someSpeech
+                this.makeCharacterName(Padezhy.I) + ' ' + type.getTitle() + ' ' + anotherHero.makeCharacterName(Padezhy.D) + ": " + someSpeech
         );
     }
 
@@ -22,14 +24,15 @@ public class Spruts extends AbstractHero {
     public String makeCharacterName(Padezhy p) {
         String character = "";
         if (p==Padezhy.I){
-            character = this.getProfession() + ' ' + this.getName();
+            character = this.getProfession().getTitle() + ' ' + this.getName();
         }
         else if (p==Padezhy.R){
-            character = this.getProfession() + 'а' + ' ' + this.getName() + 'а';
+            character = this.getProfession().getTitle() + 'а' + ' ' + this.getName() + 'а';
         }
         else if (p==Padezhy.D){
-            character = this.getProfession() + 'у' + ' ' + this.getName() + 'у';
+            character = this.getProfession().getTitle() + 'у' + ' ' + this.getName() + 'у';
         }
         return character;
     }
+
 }

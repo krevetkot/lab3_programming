@@ -1,42 +1,41 @@
 import enums.*;
 import heroes.*;
-import objects.SpaceObject;
-import objects.Spaceship;
+import objects.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Spaceship spaceship = new Spaceship("космический корабль", Direction.неизвестно, 10);
-        Astronoms astronoms = new Astronoms("астрономы", "давилон");
-        Spruts spruts = new Spruts("Спрутс", "господин", "давилон");
-        Rzhigl rzhigl = new Rzhigl("Ржигль", "главный полицейский комиссар", "давилон");
-        Poor poor = new Poor("бедняки");
-        Shortys shortys = new Shortys("коротышки");
+        Spaceship spaceship = new Spaceship("космический корабль", Direction.UNKNOWN, 10);
+        Astronoms astronoms = new Astronoms(Profession.ASTRONOM, LivingPlace.DAVILON);
+        Spruts spruts = new Spruts("Спрутс", Profession.SENIOR, LivingPlace.DAVILON);
+        Rzhigl rzhigl = new Rzhigl("Ржигль", Profession.COMISSAR, LivingPlace.DAVILON);
+        Poor poor = new Poor(Profession.POOR);
+        Shortys shortys = new Shortys(Profession.SHORTY);
 
         astronoms.observe(spaceship);
         spaceship.speedUp(100);
-        while (spaceship.isReadyToEscapeFromGravitation(Direction.Земля)==false){
+        while (!spaceship.isReadyToEscapeFromGravitation(Direction.EARTH)){
             astronoms.makeConclusions("чтобы выйти из сферы земного притяжения, космическому кораблю нужно еще больше разогнаться");
             spaceship.speedUp(10);
         }
         astronoms.makeConclusions("космический объект приобрел скорость для выхода из сферы земного притяжения");
 
-        spaceship.changeDirection(Direction.Луна);
+        spaceship.changeDirection(Direction.MOON);
         astronoms.countTrajectory(spaceship);
 
-        astronoms.speak("космический корабль направляется к Луне", spruts, Dialogue.сообщили);
-        spruts.speak("продолжайте наблюдения", astronoms, Dialogue.отдал_распоряжение);
+        astronoms.speak("космический корабль направляется к Луне", spruts, Dialogue.REPORT);
+        spruts.speak("продолжайте наблюдения", astronoms, Dialogue.DISPOSE);
 
-        spruts.speak("ожидается прибытие космического корабля с коротышками на борту", rzhigl, Dialogue.сказал_по_телефону);
-        spruts.speak("как можно скорее разделайтесь с коротышками", rzhigl, Dialogue.отдал_распоряжение);
+        spruts.speak("ожидается прибытие космического корабля с коротышками на борту", rzhigl, Dialogue.CALL);
+        spruts.speak("как можно скорее разделайтесь с коротышками", rzhigl, Dialogue.DISPOSE);
 
         shortys.intend("сеять повсюду гигантские семена и подстрекать бедняков к неповиновению богачам");
 
-        rzhigl.speak("все необходимые меры будут приняты", spruts, Dialogue.ответил);
-        rzhigl.speak("когда ожидается прибытие космического корабля на Луну?", spruts, Dialogue.спросил);
-        rzhigl.speak("куда высадятся космонавты?", spruts, Dialogue.спросил);
-        rzhigl.speak("сколько примерно будет космонавтов?", spruts, Dialogue.спросил);
+        rzhigl.speak("все необходимые меры будут приняты", spruts, Dialogue.ANSWER);
+        rzhigl.speak("когда ожидается прибытие космического корабля на Луну?", spruts, Dialogue.ASK);
+        rzhigl.speak("куда высадятся космонавты?", spruts, Dialogue.ASK);
+        rzhigl.speak("сколько примерно будет космонавтов?", spruts, Dialogue.ASK);
 
         if (Math.random()<0.5){
             System.out.println("меры насчет коротышек не были приняты...");

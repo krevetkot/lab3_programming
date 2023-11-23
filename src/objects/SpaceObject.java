@@ -6,32 +6,36 @@ import interfaces.Flyable;
 import interfaces.Storytellable;
 
 public abstract class SpaceObject implements Storytellable, Flyable{
-    private Direction direction;
-    private int speed;
-    private String type;
+    protected Direction direction;
+    protected int speed;
+    protected String type;
 
     public SpaceObject(String type, Direction direction, int speed){
         this.type = type;
         this.direction = direction;
         this.speed = speed;
     }
-    protected void setDirection(Direction direction){
+
+    protected void setDirection(Direction direction) {
         this.direction = direction;
     }
-    protected void setSpeed(int speed){
+
+    protected void setSpeed(int speed) {
         this.speed = speed;
     }
-    public Direction getDirection(){
+
+    public Direction getDirection() {
         return this.direction;
     }
 
-    public int getSpeed(){
+    public int getSpeed() {
         return this.speed;
     }
 
-    public String getType(){
+    public String getType() {
         return this.type;
     }
+
 
     @Override
     public boolean equals(Object obj) {

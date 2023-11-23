@@ -1,25 +1,27 @@
 package heroes;
 
+import enums.LivingPlace;
+import enums.Profession;
 import interfaces.Speakable;
 import interfaces.Storytellable;
 
 public abstract class AbstractHero implements Storytellable, Speakable {
-    private String name;
-    private String profession;
-    private String livingPlace;
+    protected String name;
+    protected Profession profession;
+    protected LivingPlace livingPlace;
 
-    public AbstractHero(String name, String profession, String livingPlace){
+    public AbstractHero(String name, Profession profession, LivingPlace livingPlace){
         this.name = name;
         this.profession = profession;
         this.livingPlace = livingPlace;
     };
 
-    public AbstractHero(String profession, String livingPlace){
+    public AbstractHero(Profession profession, LivingPlace livingPlace){
         this.profession = profession;
         this.livingPlace = livingPlace;
     };
 
-    public AbstractHero(String profession){
+    public AbstractHero(Profession profession){
         this.profession = profession;
     };
 
@@ -27,13 +29,14 @@ public abstract class AbstractHero implements Storytellable, Speakable {
         return this.name;
     }
 
-    public String getProfession() {
+    public Profession getProfession() {
         return this.profession;
     }
 
-    public String getLivingPlace() {
+    public LivingPlace getLivingPlace() {
         return this.livingPlace;
     }
+
 
     @Override
     public boolean equals(Object obj) {

@@ -6,7 +6,7 @@ import interfaces.Storytellable;
 import objects.SpaceObject;
 
 public class Astronoms extends AbstractHero {
-    public Astronoms(String profession, String livingPlace){
+    public Astronoms(Profession profession, LivingPlace livingPlace){
         super(profession, livingPlace);
         System.out.println(makeCharacterName(Padezhy.I) + " созданы");
     }
@@ -14,7 +14,7 @@ public class Astronoms extends AbstractHero {
     @Override
     public void speak(String someSpeech, AbstractHero anotherHero, Dialogue type){
         System.out.println(
-                this.makeCharacterName(Padezhy.I) + ' ' + type + ' ' + anotherHero.makeCharacterName(Padezhy.D) + ": " + someSpeech
+                this.makeCharacterName(Padezhy.I) + ' ' + type.getTitle() + ' ' + anotherHero.makeCharacterName(Padezhy.D) + ": " + someSpeech
         );
     }
 
@@ -22,13 +22,13 @@ public class Astronoms extends AbstractHero {
     public String makeCharacterName(enums.Padezhy p){
         String character = "";
         if (p==Padezhy.I){
-            character = this.getLivingPlace() + "ские астрономы";
+            character = this.getLivingPlace().getTitle() + "ские астрономы";
         }
         else if (p==Padezhy.R){
-            character = this.getLivingPlace() + "ских астрономов";
+            character = this.getLivingPlace().getTitle() + "ских астрономов";
         }
         else if (p==Padezhy.D){
-            character = this.getLivingPlace() + "ским астрономам";
+            character = this.getLivingPlace().getTitle() + "ским астрономам";
         }
         return character;
 

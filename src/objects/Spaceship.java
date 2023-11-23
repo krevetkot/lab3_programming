@@ -6,9 +6,6 @@ import interfaces.Flyable;
 import interfaces.Storytellable;
 
 public class Spaceship extends SpaceObject {
-    public Direction direction = null;
-    public int speed;
-
     public Spaceship(String type, Direction direction, int speed){
         super(type, direction, speed);
     }
@@ -16,7 +13,7 @@ public class Spaceship extends SpaceObject {
     @Override
     public void changeDirection(Direction newDirection) {
         setDirection(newDirection);
-        System.out.println(makeCharacterName(Padezhy.I) + " поменял направление на: " + newDirection);
+        System.out.println(makeCharacterName(Padezhy.I) + " поменял направление на: " + newDirection.getTitle());
     }
 
     @Override
