@@ -5,7 +5,7 @@ import interfaces.Speakable;
 import interfaces.Storytellable;
 import objects.SpaceObject;
 
-public class Astronoms extends AbstractHero implements Storytellable, Speakable {
+public class Astronoms extends AbstractHero {
     public Astronoms(String profession, String livingPlace){
         super(profession, livingPlace);
         System.out.println(makeCharacterName(Padezhy.I) + " созданы");
