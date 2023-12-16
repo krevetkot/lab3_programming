@@ -21,6 +21,12 @@ public class Meteor extends SpaceObject{
     }
 
     @Override
+    public void speedDown(int times) {
+        setSpeed(getSpeed()/times);
+        System.out.println(makeCharacterName(Padezhy.I) + " замедлился в " + times + " раз");
+    }
+
+    @Override
     public String makeCharacterName(Padezhy p) {
         String character = "";
         if (p==Padezhy.I){

@@ -2,9 +2,12 @@ package spaceObjects;
 
 import enums.Direction;
 import enums.Padezhy;
+import heroes.AbstractHero;
 
 public class Spaceship extends SpaceObject {
     JetEngine engine;
+    AbstractHero[] passengers;
+
     {
         engine = new JetEngine();
     }
@@ -23,6 +26,13 @@ public class Spaceship extends SpaceObject {
         setSpeed(getSpeed()*times);
         engine.turnOn();
         System.out.println(makeCharacterName(Padezhy.I) + " ускорился в " + times + " раз");
+    }
+
+    @Override
+    public void speedDown(int times) {
+        setSpeed(getSpeed()/times);
+        engine.turnOf();
+        System.out.println(makeCharacterName(Padezhy.I) + " замедлился в " + times + " раз");
     }
 
     @Override
@@ -48,6 +58,15 @@ public class Spaceship extends SpaceObject {
         }
         else {
             return false;
+        }
+    }
+
+    public void turn(int degrees, char side){
+        if (side == 'r'){
+            System.out.println(makeCharacterName(Padezhy.I) + " повернул на " + degrees + " градусов направо");
+        }
+        else if (side == 'l'){
+            System.out.println(makeCharacterName(Padezhy.I) + " повернул на " + degrees + " градусов налево");
         }
     }
 

@@ -40,10 +40,6 @@ public class Astronoms extends AbstractHero {
 
     }
 
-//    public void observe(SpaceObject object){
-//        System.out.println(makeCharacterName(Padezhy.I) + " наблюдают за " + object.makeCharacterName(Padezhy.T));
-//    }
-
     public void makeConclusions(String conc){
         System.out.println(makeCharacterName(Padezhy.I) + " делают выводы: " + conc);
     }
@@ -72,7 +68,12 @@ public class Astronoms extends AbstractHero {
         this.lastMeasurement[0] = weight;
         this.lastMeasurement[1] = distance;
         this.lastMeasurement[2] = speed;
-//        System.out.println("вес: " + weight + " расстояние: " + distance + " скорость: " + speed);
+//        return new int[] {weight, distance, speed};
+    }
+
+    public void announceResultsOfObservation(){
+        System.out.println("данные, полученные из наблюдений: вес: " + lastMeasurement[0] +
+                " расстояние: " + lastMeasurement[1] + " скорость " + lastMeasurement[2]);
     }
 
 }

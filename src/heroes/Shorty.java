@@ -1,14 +1,13 @@
 package heroes;
 
 import enums.Dialogue;
+import enums.LivingPlace;
 import enums.Padezhy;
 import enums.Profession;
-import interfaces.Speakable;
-import interfaces.Storytellable;
 
-public class Shortys extends AbstractHero {
-    public Shortys(Profession profession){
-        super(profession);
+public class Shorty extends AbstractHero {
+    public Shorty(String name, Profession profession, LivingPlace livingPlace){
+        super(name, profession, livingPlace);
         System.out.println(makeCharacterName(Padezhy.I) + " созданы");
     }
 

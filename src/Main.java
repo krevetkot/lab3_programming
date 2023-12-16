@@ -12,7 +12,7 @@ public class Main {
         Spruts spruts = new Spruts("Спрутс", Profession.SENIOR, LivingPlace.DAVILON);
         Rzhigl rzhigl = new Rzhigl("Ржигль", Profession.COMISSAR, LivingPlace.DAVILON);
         Poor poor = new Poor(Profession.POOR);
-        Shortys shortys = new Shortys(Profession.SHORTY);
+        Shorty shortys = new Shorty(Profession.SHORTY);
 
         System.out.println();
 
@@ -63,14 +63,24 @@ public class Main {
         rzhigl.speak("куда высадятся космонавты?", spruts, Dialogue.ASK);
         rzhigl.speak("сколько примерно будет космонавтов?\n", spruts, Dialogue.ASK);
 
-        if (Math.random()<0.5){
-            System.out.println("меры насчет коротышек не были приняты...");
-            shortys.SowSeeds();
-            shortys.instigate(poor);
-        }
-        else {
-            System.out.println("меры насчет коротышек были успешно приняты :)");
-        }
+//        if (Math.random()<0.5){
+//            System.out.println("меры насчет коротышек не были приняты...");
+//            shortys.SowSeeds();
+//            shortys.instigate(poor);
+//        }
+//        else {
+//            System.out.println("меры насчет коротышек были успешно приняты :)");
+//        }
+
+        System.out.println("а в это время...");
+
+        astronoms.makeConclusions("космический корабль вышел из сферы притяжения Земли");
+        astronoms.countTrajectory(spaceship);
+        astronoms.makeConclusions("космический корабль пролетит мимо Луны?");
+        spaceship.turn(10, 'r');
+        astronoms.makeConclusions("теперь мы убеждены, что это космический корабль. стопроц");
+        astronoms.announceResultsOfObservation();
+        astronoms.makeConclusions("в космическом корабле 10-30 пассажиров");
 
     }
 }
