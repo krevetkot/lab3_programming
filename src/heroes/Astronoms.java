@@ -1,11 +1,17 @@
 package heroes;
 
 import enums.*;
-import interfaces.Speakable;
-import interfaces.Storytellable;
-import objects.SpaceObject;
+import items.GravitonTelescope;
+import spaceObjects.SpaceObject;
 
 public class Astronoms extends AbstractHero {
+
+    int[] lastMeasurement;
+
+    {
+        lastMeasurement = new int[]{0, 0, 0};
+    }
+
     public Astronoms(Profession profession, LivingPlace livingPlace){
         super(profession, livingPlace);
         System.out.println(makeCharacterName(Padezhy.I) + " созданы");
@@ -34,18 +40,39 @@ public class Astronoms extends AbstractHero {
 
     }
 
-    public void observe(SpaceObject object){
-        System.out.println(makeCharacterName(Padezhy.I) + " наблюдают за " + object.makeCharacterName(Padezhy.T));
-    }
+//    public void observe(SpaceObject object){
+//        System.out.println(makeCharacterName(Padezhy.I) + " наблюдают за " + object.makeCharacterName(Padezhy.T));
+//    }
 
     public void makeConclusions(String conc){
         System.out.println(makeCharacterName(Padezhy.I) + " делают выводы: " + conc);
+    }
+
+    public void makeConclusions(){
+        if (this.lastMeasurement[0] == 1000){
+            System.out.println(makeCharacterName(Padezhy.I) + " делают вывод: это космический корбаль");
+        }
+        else if (this.lastMeasurement[0] == 40){
+            System.out.println(makeCharacterName(Padezhy.I) + " делают вывод: это метеор");
+        }
     }
 
     public void countTrajectory(SpaceObject object){
         //какие-то бурные вычисления
         System.out.println(
                 makeCharacterName(Padezhy.I) + " рассчитывают траекторию полета " + object.makeCharacterName(Padezhy.R));
+    }
+
+    public void observe(GravitonTelescope telescope, SpaceObject object){
+        System.out.println(makeCharacterName(Padezhy.I) + " наблюдают за космическим телом"); //+ object.makeCharacterName(Padezhy.T));
+        int[][] inf = telescope.getInformationAboutObject(object.getGraviton());
+        int weight = (int)(inf[0][0]/200);
+        int distance = inf[1][0];
+        int speed = inf[1][1];
+        this.lastMeasurement[0] = weight;
+        this.lastMeasurement[1] = distance;
+        this.lastMeasurement[2] = speed;
+//        System.out.println("вес: " + weight + " расстояние: " + distance + " скорость: " + speed);
     }
 
 }

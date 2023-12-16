@@ -1,13 +1,15 @@
-package objects;
+package spaceObjects;
 
 import enums.Direction;
 import enums.Padezhy;
-import interfaces.Flyable;
-import interfaces.Storytellable;
 
 public class Spaceship extends SpaceObject {
-    public Spaceship(String type, Direction direction, int speed){
-        super(type, direction, speed);
+    JetEngine engine;
+    {
+        engine = new JetEngine();
+    }
+    public Spaceship(String type, Direction direction, int speed, int weight){
+        super(type, direction, speed, weight);
     }
 
     @Override
@@ -19,6 +21,7 @@ public class Spaceship extends SpaceObject {
     @Override
     public void speedUp(int times) {
         setSpeed(getSpeed()*times);
+        engine.turnOn();
         System.out.println(makeCharacterName(Padezhy.I) + " ускорился в " + times + " раз");
     }
 
@@ -47,4 +50,16 @@ public class Spaceship extends SpaceObject {
             return false;
         }
     }
+
+    public class JetEngine{
+        int statement;
+
+        public void turnOn(){
+            this.statement = 1;
+        }
+        public void turnOf(){
+            this.statement = 0;
+        }
+    }
+
 }
