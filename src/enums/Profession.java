@@ -5,6 +5,7 @@ public enum Profession {
     COMISSAR("главный полицейский коммисар"),
     SENIOR("господин"),
     POOR("бедняки"),
+    UNKNOWN(""),
     SHORTY("коротышки");
 
     private String title;

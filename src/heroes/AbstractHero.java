@@ -5,7 +5,7 @@ import enums.Profession;
 import interfaces.Speakable;
 import interfaces.Storytellable;
 
-public abstract class AbstractHero implements Storytellable, Speakable {
+public abstract class AbstractHero implements Speakable {
     protected String name;
     protected Profession profession;
     protected LivingPlace livingPlace;

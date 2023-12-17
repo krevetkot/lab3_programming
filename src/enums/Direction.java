@@ -5,6 +5,7 @@ public enum Direction {
     EARTH("Земля"),
     SPACE("Космос"),
     OUT_OF_EARTH("от Земли"),
+    SEE_OF_CLARITY("лунное море Ясности"),
     UNKNOWN("неизвестно");
 
     private String title;

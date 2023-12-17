@@ -5,6 +5,8 @@ public enum Dialogue {
     DISPOSE("отдал_распоряжение"),
     ASK("спросил"),
     CALL("сказал_по_телефону"),
+    OFFER("предложил"),
+    EXCLAIM("воскликнул"),
     ANSWER("ответил");
 
     private String title;

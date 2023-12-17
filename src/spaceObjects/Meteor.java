@@ -11,33 +11,33 @@ public class Meteor extends SpaceObject{
     @Override
     public void changeDirection(Direction newDirection) {
         setDirection(newDirection);
-        System.out.println(makeCharacterName(Padezhy.I) + " поменял направление на: " + newDirection.getTitle());
+        System.out.println("метеор поменял направление на: " + newDirection.getTitle());
     }
 
     @Override
     public void speedUp(int times) {
         setSpeed(getSpeed()*times);
-        System.out.println(makeCharacterName(Padezhy.I) + " ускорился в " + times + " раз");
+        System.out.println("метеор ускорился в " + times + " раз");
     }
 
     @Override
     public void speedDown(int times) {
         setSpeed(getSpeed()/times);
-        System.out.println(makeCharacterName(Padezhy.I) + " замедлился в " + times + " раз");
+        System.out.println("метеор замедлился в " + times + " раз");
     }
 
-    @Override
-    public String makeCharacterName(Padezhy p) {
-        String character = "";
-        if (p==Padezhy.I){
-            character = this.getType();
-        }
-        else if (p==Padezhy.R){
-            character = "метеора";
-        }
-        else if (p==Padezhy.T){
-            character = "метеором";
-        }
-        return character;
-    }
+//    @Override
+//    public String makeCharacterName(Padezhy p) {
+//        String character = "";
+//        if (p==Padezhy.I){
+//            character = this.getType();
+//        }
+//        else if (p==Padezhy.R){
+//            character = "метеора";
+//        }
+//        else if (p==Padezhy.T){
+//            character = "метеором";
+//        }
+//        return character;
+//    }
 }

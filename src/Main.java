@@ -9,10 +9,28 @@ public class Main {
 
         GravitonTelescope telescope = new GravitonTelescope(Direction.MOON, Direction.EARTH);
         Astronoms astronoms = new Astronoms(Profession.ASTRONOM, LivingPlace.DAVILON);
-        Spruts spruts = new Spruts("Спрутс", Profession.SENIOR, LivingPlace.DAVILON);
-        Rzhigl rzhigl = new Rzhigl("Ржигль", Profession.COMISSAR, LivingPlace.DAVILON);
+        Shorty spruts = new Shorty("Спрутс", Profession.SENIOR, LivingPlace.DAVILON);
+        Shorty rzhigl = new Shorty("Ржигль", Profession.COMISSAR, LivingPlace.DAVILON);
+
+        Shorty znaika = new Shorty("Знайка", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
+        Shorty fuksiya = new Shorty("Фуксия", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
+        Shorty seledochka = new Shorty("Селедочка", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
+
+        Spaceship spaceship1 = new Spaceship("космический корабль 1", Direction.OUT_OF_EARTH, 10, 1000, 3);
+        spaceship1.addPassenger(znaika);
+        spaceship1.addPassenger(fuksiya);
+        spaceship1.addPassenger(seledochka);
+
+        Shorty neznaika = new Shorty("Незнайка", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
+        Shorty ponchik = new Shorty("Пончик", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
+
+        Spaceship spaceship2 = new Spaceship("космический корабль 2", Direction.OUT_OF_EARTH, 10, 1000, 2);
+        spaceship2.addPassenger(neznaika);
+        spaceship2.addPassenger(ponchik);
+
+
         Poor poor = new Poor(Profession.POOR);
-        Shorty shortys = new Shorty(Profession.SHORTY);
+        Shorty shortys = new Shorty("", Profession.SHORTY, LivingPlace.FLOWER_CITY);
 
         System.out.println();
 
@@ -28,27 +46,27 @@ public class Main {
 
         System.out.println();
 
-        Spaceship spaceship = new Spaceship("космический корабль", Direction.OUT_OF_EARTH, 10, 1000);
-        astronoms.observe(telescope, spaceship);
+
+        astronoms.observe(telescope, spaceship1);
         astronoms.makeConclusions("что-то странное");
-        spaceship.speedUp(10);
-        astronoms.observe(telescope, spaceship);
+        spaceship1.speedUp(10);
+        astronoms.observe(telescope, spaceship1);
         astronoms.makeConclusions("оно противоречит законам небесной механики");
         astronoms.makeConclusions("у него есть реактивый двигатель");
         astronoms.makeConclusions();
 
         System.out.println();
 
-        astronoms.observe(telescope, spaceship);
-        spaceship.speedUp(100);
-        while (!spaceship.isReadyToEscapeFromGravitation(Direction.EARTH)){
+        astronoms.observe(telescope, spaceship1);
+        spaceship1.speedUp(100);
+        while (!spaceship1.isReadyToEscapeFromGravitation(Direction.EARTH)){
             astronoms.makeConclusions("чтобы выйти из сферы земного притяжения, космическому кораблю нужно еще больше разогнаться");
-            spaceship.speedUp(10);
+            spaceship1.speedUp(10);
         }
         astronoms.makeConclusions("космический объект приобрел скорость для выхода из сферы земного притяжения");
 
-        spaceship.changeDirection(Direction.MOON);
-        astronoms.countTrajectory(spaceship);
+        spaceship1.changeDirection(Direction.MOON);
+        astronoms.countTrajectory(spaceship1);
 
         astronoms.speak("космический корабль направляется к Луне \n", spruts, Dialogue.REPORT);
         spruts.speak("продолжайте наблюдения", astronoms, Dialogue.DISPOSE);
@@ -75,12 +93,27 @@ public class Main {
         System.out.println("а в это время...");
 
         astronoms.makeConclusions("космический корабль вышел из сферы притяжения Земли");
-        astronoms.countTrajectory(spaceship);
+        astronoms.countTrajectory(spaceship1);
         astronoms.makeConclusions("космический корабль пролетит мимо Луны?");
-        spaceship.turn(10, 'r');
+        spaceship1.turn(10, 'r', true);
         astronoms.makeConclusions("теперь мы убеждены, что это космический корабль. стопроц");
         astronoms.announceResultsOfObservation();
-        astronoms.makeConclusions("в космическом корабле 10-30 пассажиров");
+        astronoms.makeConclusions("в космическом корабле 10-30 пассажиров\n");
+
+        spaceship1.flyAround(Direction.MOON);
+        astronoms.makeConclusions("ракета ищет место для посадки\n");
+
+        System.out.println("а в это время на космическом корабле 1...");
+        znaika.speak("не будем высаживаться, пока не найдем ракету пончика и незнайки", null, Dialogue.REPORT);
+        seledochka.speak("согласна", znaika, Dialogue.ANSWER);
+        fuksiya.speak("солидарна\n", znaika, Dialogue.ANSWER);
+
+        spaceship2.land(Direction.SEE_OF_CLARITY);
+        System.out.println();
+
+        while(!znaika.discover(spaceship2)){
+            spaceship1.flyAround(Direction.MOON);
+        }
 
     }
 }

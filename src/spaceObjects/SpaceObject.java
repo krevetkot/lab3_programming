@@ -5,7 +5,7 @@ import heroes.AbstractHero;
 import interfaces.Flyable;
 import interfaces.Storytellable;
 
-public abstract class SpaceObject implements Storytellable, Flyable{
+public abstract class SpaceObject implements Flyable{
     protected Direction direction;
     protected int speed;
     protected String type;
