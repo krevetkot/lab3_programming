@@ -1,6 +1,6 @@
 import enums.*;
 import heroes.*;
-import items.GravitonTelescope;
+import items.*;
 import spaceObjects.*;
 
 public class Main {
@@ -8,6 +8,19 @@ public class Main {
     public static void main(String[] args) {
 
         GravitonTelescope telescope = new GravitonTelescope(Direction.MOON, Direction.EARTH);
+        //создадим объекты антенны, экрана и локатора для соблюдения принципов солид, а именно
+        //принципа инверсии зависимостей
+
+        GravitonTelescope.Antenna antenna = telescope.new Antenna();
+        GravitonTelescope.Screen screen = telescope.new Screen();
+        GravitonTelescope.Locator locator = telescope.new Locator();
+
+        telescope.assemble(antenna, screen, locator);
+        //создание телескопа завершено, ураа
+        //создадим инструкцию к телескопу, чтобы астрономы ей воспользовались
+
+        GravitonTelescope.Instruction instruction = new GravitonTelescope.Instruction(12345678, Language.RUSSIAN);
+
         Astronoms astronoms = new Astronoms(Profession.ASTRONOM, LivingPlace.DAVILON);
         Shorty spruts = new Shorty("Спрутс", Profession.SENIOR, LivingPlace.DAVILON);
         Shorty rzhigl = new Shorty("Ржигль", Profession.COMISSAR, LivingPlace.DAVILON);
@@ -16,7 +29,10 @@ public class Main {
         Shorty fuksiya = new Shorty("Фуксия", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
         Shorty seledochka = new Shorty("Селедочка", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
 
-        Spaceship spaceship1 = new Spaceship("космический корабль 1", Direction.OUT_OF_EARTH, 10, 1000, 3);
+
+
+        Spaceship spaceship1 = new Spaceship("космический корабль 1", Direction.OUT_OF_EARTH, 10,  3);
+        spaceship1.start();
         spaceship1.addPassenger(znaika);
         spaceship1.addPassenger(fuksiya);
         spaceship1.addPassenger(seledochka);
@@ -24,7 +40,8 @@ public class Main {
         Shorty neznaika = new Shorty("Незнайка", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
         Shorty ponchik = new Shorty("Пончик", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
 
-        Spaceship spaceship2 = new Spaceship("космический корабль 2", Direction.OUT_OF_EARTH, 10, 1000, 2);
+        Spaceship spaceship2 = new Spaceship("космический корабль 2", Direction.OUT_OF_EARTH, 10,  2);
+        spaceship2.start();
         spaceship2.addPassenger(neznaika);
         spaceship2.addPassenger(ponchik);
 
@@ -81,16 +98,30 @@ public class Main {
         rzhigl.speak("куда высадятся космонавты?", spruts, Dialogue.ASK);
         rzhigl.speak("сколько примерно будет космонавтов?\n", spruts, Dialogue.ASK);
 
-//        if (Math.random()<0.5){
-//            System.out.println("меры насчет коротышек не были приняты...");
-//            shortys.SowSeeds();
-//            shortys.instigate(poor);
-//        }
-//        else {
-//            System.out.println("меры насчет коротышек были успешно приняты :)");
-//        }
+        System.out.println("в ближайшем будущем...");
 
-        System.out.println("а в это время...");
+        if (Math.random()<0.5){
+            System.out.println("меры насчет коротышек не были приняты...");
+
+            //seeds - анонимный класс, который наследуется от абстрактных семян
+            shortys.SowSeeds(new Seeds(4.273912631F, "ромашка"){
+                @Override
+                public void growUp() {
+                    for (int i=0; i<10; i++){
+                        this.setSize(this.getSize()+i);
+                    }
+                    System.out.println("из гиганстских семян выросла " + this.getType() + '!');
+                }
+            });
+
+            shortys.instigate(poor);
+        }
+        else {
+            System.out.println("меры насчет коротышек были успешно приняты :)");
+        }
+
+        System.out.println();
+        System.out.println("вернемся в настоящее...");
 
         astronoms.makeConclusions("космический корабль вышел из сферы притяжения Земли");
         astronoms.countTrajectory(spaceship1);

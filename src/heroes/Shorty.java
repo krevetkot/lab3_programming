@@ -1,11 +1,8 @@
 package heroes;
 
-import enums.Dialogue;
-import enums.LivingPlace;
-import enums.Padezhy;
-import enums.Profession;
+import enums.*;
 import spaceObjects.SpaceObject;
-import spaceObjects.Spaceship;
+import items.*;
 
 public class Shorty extends AbstractHero {
     public Shorty(String name, Profession profession, LivingPlace livingPlace){
@@ -43,9 +40,10 @@ public class Shorty extends AbstractHero {
         );
     }
 
-    public void SowSeeds(){
-        //какие-то активные действия
+    public void SowSeeds(Seeds seeds){
+        seeds.setState(State.SOWN);
         System.out.println("коротышки сеят гигантские семена");
+        seeds.growUp();
     }
 
     public void instigate(Poor poor){

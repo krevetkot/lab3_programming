@@ -6,13 +6,10 @@ import spaceObjects.SpaceObject;
 
 public class Astronoms extends AbstractHero {
 
-    {
-        this.name = "астрономы";
-    }
-
     int[] lastMeasurement;
 
     {
+        this.name = "астрономы";
         lastMeasurement = new int[]{0, 0, 0};
     }
 
@@ -24,46 +21,30 @@ public class Astronoms extends AbstractHero {
     @Override
     public void speak(String someSpeech, AbstractHero anotherHero, Dialogue type){
         System.out.println(
-                "астрономы " + type.getTitle() + ' ' + anotherHero.getName() + ": " + someSpeech
+                this.getName() + ' ' + type.getTitle() + ' ' + anotherHero.getName() + ": " + someSpeech
         );
     }
 
-//    @Override
-//    public String makeCharacterName(enums.Padezhy p){
-//        String character = "";
-//        if (p==Padezhy.I){
-//            character = this.getLivingPlace().getTitle() + "ские астрономы";
-//        }
-//        else if (p==Padezhy.R){
-//            character = this.getLivingPlace().getTitle() + "ских астрономов";
-//        }
-//        else if (p==Padezhy.D){
-//            character = this.getLivingPlace().getTitle() + "ским астрономам";
-//        }
-//        return character;
-//
-//    }
-
     public void makeConclusions(String conc){
-        System.out.println("астрономы делают выводы: " + conc);
+        System.out.println(this.getName() + " делают выводы: " + conc);
     }
 
     public void makeConclusions(){
         if (this.lastMeasurement[0] == 1000){
-            System.out.println("астрономы делают вывод: это космический корбаль");
+            System.out.println(this.getName() + " делают вывод: это космический корбаль");
         }
         else if (this.lastMeasurement[0] == 40){
-            System.out.println("астрономы делают вывод: это метеор");
+            System.out.println(this.getName() + " делают вывод: это метеор");
         }
     }
 
     public void countTrajectory(SpaceObject object){
         //какие-то бурные вычисления
-        System.out.println("астрономы рассчитывают траекторию полета " + object.getType());
+        System.out.println(this.getName() + " рассчитывают траекторию полета " + object.getType());
     }
 
     public void observe(GravitonTelescope telescope, SpaceObject object){
-        System.out.println("астрономы наблюдают за космическим телом"); //+ object.makeCharacterName(Padezhy.T));
+        System.out.println(this.getName() + " наблюдают за космическим телом"); //+ object.makeCharacterName(Padezhy.T));
         int[][] inf = telescope.getInformationAboutObject(object.getGraviton());
         int weight = (int)(inf[0][0]/200);
         int distance = inf[1][0];
@@ -77,6 +58,11 @@ public class Astronoms extends AbstractHero {
     public void announceResultsOfObservation(){
         System.out.println("данные, полученные из наблюдений: вес: " + lastMeasurement[0] +
                 " расстояние: " + lastMeasurement[1] + " скорость " + lastMeasurement[2]);
+    }
+
+    public void readTelescopeInstruction(GravitonTelescope.Instruction instruction){
+        //читают типа
+        System.out.println(this.getName() + " прочли инструкцию к телескопу. можно начинать работу!");
     }
 
 }

@@ -1,9 +1,7 @@
 package spaceObjects;
 
 import enums.Direction;
-import heroes.AbstractHero;
 import interfaces.Flyable;
-import interfaces.Storytellable;
 
 public abstract class SpaceObject implements Flyable{
     protected Direction direction;

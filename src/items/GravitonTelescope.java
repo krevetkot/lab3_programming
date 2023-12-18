@@ -6,19 +6,14 @@ import spaceObjects.*;
 public class GravitonTelescope {
 
     private Direction direction;
-    public Antenna antenna;
-    public Screen screen;
-    public Locator locator;
+    private Antenna antenna;
+    private Screen screen;
+    private Locator locator;
     private Direction location; //где находится телескоп
 
     public GravitonTelescope(Direction location, Direction direction){
         this.location = location;
         this.direction = direction;
-
-        this.antenna = new Antenna();
-        this.screen = new Screen();
-        this.locator = new Locator();
-
         System.out.println("гравитонный телескоп создан");
     }
 
@@ -28,6 +23,12 @@ public class GravitonTelescope {
 
     public int[][] getInformationAboutObject(SpaceObject.Graviton graviton){
         return new int[][]{this.screen.createCroockedLine(graviton), this.locator.turnOn(graviton)};
+    }
+
+    public void assemble(GravitonTelescope.Antenna antenna, GravitonTelescope.Screen screen, GravitonTelescope.Locator locator){
+        this.antenna = antenna;
+        this.screen = screen;
+        this.locator = locator;
     }
 
 
@@ -44,7 +45,7 @@ public class GravitonTelescope {
 
     }
 
-    private class Screen {
+    public class Screen {
         //определяет массу объекта
         public int[] createCroockedLine(SpaceObject.Graviton graviton){
             int weighOfObject = GravitonTelescope.this.antenna.scan(graviton)[1];
@@ -56,12 +57,22 @@ public class GravitonTelescope {
         }
     }
 
-    private class Locator {
+    public class Locator {
         //определяет расстояние до объекта и скорость
         public int[] turnOn(SpaceObject.Graviton graviton){
             int speedOfObject = GravitonTelescope.this.antenna.scan(graviton)[0];
             int distanceToObject = speedOfObject+(GravitonTelescope.this.location.hashCode());
             return new int[]{distanceToObject, speedOfObject};
+        }
+    }
+
+    public static class Instruction{
+        private int telescopeModel;
+        private Language language;
+
+        public Instruction(int telescopeModel, Language language){
+            this.telescopeModel = telescopeModel;
+            this.language = language;
         }
     }
 

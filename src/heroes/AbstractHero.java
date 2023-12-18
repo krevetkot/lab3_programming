@@ -3,7 +3,6 @@ package heroes;
 import enums.LivingPlace;
 import enums.Profession;
 import interfaces.Speakable;
-import interfaces.Storytellable;
 
 public abstract class AbstractHero implements Speakable {
     protected String name;
