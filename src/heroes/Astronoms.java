@@ -44,15 +44,14 @@ public class Astronoms extends AbstractHero {
     }
 
     public void observe(GravitonTelescope telescope, SpaceObject object){
-        System.out.println(this.getName() + " наблюдают за космическим телом"); //+ object.makeCharacterName(Padezhy.T));
-        int[][] inf = telescope.getInformationAboutObject(object.getGraviton());
+        System.out.println(this.getName() + " наблюдают за космическим телом");
+        int[][] inf = telescope.getInformationAboutObject(object.getGravitons());
         int weight = (int)(inf[0][0]/200);
         int distance = inf[1][0];
         int speed = inf[1][1];
         this.lastMeasurement[0] = weight;
         this.lastMeasurement[1] = distance;
         this.lastMeasurement[2] = speed;
-//        return new int[] {weight, distance, speed};
     }
 
     public void announceResultsOfObservation(){

@@ -2,21 +2,21 @@ import enums.*;
 import heroes.*;
 import items.*;
 import spaceObjects.*;
+import exceptions.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
         GravitonTelescope telescope = new GravitonTelescope(Direction.MOON, Direction.EARTH);
-        //создадим объекты антенны, экрана и локатора для соблюдения принципов солид, а именно
-        //принципа инверсии зависимостей
 
-        GravitonTelescope.Antenna antenna = telescope.new Antenna();
-        GravitonTelescope.Screen screen = telescope.new Screen();
-        GravitonTelescope.Locator locator = telescope.new Locator();
+//        GravitonTelescope.Antenna antenna = telescope.new Antenna();
+//        GravitonTelescope.Screen screen = telescope.new Screen();
+//        GravitonTelescope.Locator locator = telescope.new Locator();
+//
+//        telescope.assemble(antenna, screen, locator);
 
-        telescope.assemble(antenna, screen, locator);
-        //создание телескопа завершено, ураа
+
         //создадим инструкцию к телескопу, чтобы астрономы ей воспользовались
 
         GravitonTelescope.Instruction instruction = new GravitonTelescope.Instruction(12345678, Language.RUSSIAN);
@@ -29,25 +29,61 @@ public class Main {
         Shorty fuksiya = new Shorty("Фуксия", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
         Shorty seledochka = new Shorty("Селедочка", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
 
-
-
-        Spaceship spaceship1 = new Spaceship("космический корабль 1", Direction.OUT_OF_EARTH, 10,  3);
-        spaceship1.start();
-        spaceship1.addPassenger(znaika);
-        spaceship1.addPassenger(fuksiya);
-        spaceship1.addPassenger(seledochka);
-
         Shorty neznaika = new Shorty("Незнайка", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
         Shorty ponchik = new Shorty("Пончик", Profession.UNKNOWN, LivingPlace.FLOWER_CITY);
 
-        Spaceship spaceship2 = new Spaceship("космический корабль 2", Direction.OUT_OF_EARTH, 10,  2);
-        spaceship2.start();
-        spaceship2.addPassenger(neznaika);
-        spaceship2.addPassenger(ponchik);
-
-
         Poor poor = new Poor(Profession.POOR);
         Shorty shortys = new Shorty("", Profession.SHORTY, LivingPlace.FLOWER_CITY);
+
+        astronoms.readTelescopeInstruction(instruction);
+
+        System.out.println();
+
+        Spaceship spaceship1 = new Spaceship("космический корабль 1", Direction.OUT_OF_EARTH, 10,  2);
+
+        System.out.println("усаживаем коротышек в " + spaceship1.getType());
+        try{
+            spaceship1.addPassenger(znaika);
+        }
+        catch (NotEnoughPlaceInSpaceshipException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try{
+            spaceship1.addPassenger(fuksiya);
+        }
+        catch (NotEnoughPlaceInSpaceshipException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try{
+            spaceship1.addPassenger(seledochka);
+        }
+        catch (NotEnoughPlaceInSpaceshipException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        spaceship1.start();
+        System.out.println();
+        //специально установила вместимость пассажиров меньше, чем надо, чтобы показать работу исключения
+        Spaceship spaceship2 = new Spaceship("космический корабль 2", Direction.OUT_OF_EARTH, 10,  2);
+
+        System.out.println("усаживаем коротышек в " + spaceship2.getType());
+        try{
+            spaceship2.addPassenger(neznaika);
+        }
+        catch (NotEnoughPlaceInSpaceshipException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        try{
+            spaceship2.addPassenger(ponchik);
+        }
+        catch (NotEnoughPlaceInSpaceshipException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        spaceship2.start();
 
         System.out.println();
 
@@ -123,6 +159,7 @@ public class Main {
         System.out.println();
         System.out.println("вернемся в настоящее...");
 
+        astronoms.observe(telescope, spaceship1);
         astronoms.makeConclusions("космический корабль вышел из сферы притяжения Земли");
         astronoms.countTrajectory(spaceship1);
         astronoms.makeConclusions("космический корабль пролетит мимо Луны?");
@@ -145,6 +182,8 @@ public class Main {
         while(!znaika.discover(spaceship2)){
             spaceship1.flyAround(Direction.MOON);
         }
+
+//        spaceship1.setSpeed(-10);
 
     }
 }

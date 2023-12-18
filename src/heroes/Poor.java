@@ -1,7 +1,6 @@
 package heroes;
 
 import enums.Dialogue;
-import enums.Padezhy;
 import enums.Profession;
 
 public class Poor extends AbstractHero {

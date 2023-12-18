@@ -1,8 +1,8 @@
 package spaceObjects;
 
 import enums.Direction;
-import enums.Padezhy;
 import enums.State;
+import exceptions.NotEnoughPlaceInSpaceshipException;
 import heroes.AbstractHero;
 
 public class Spaceship extends SpaceObject {
@@ -19,6 +19,7 @@ public class Spaceship extends SpaceObject {
     public Spaceship(String type, Direction direction, int weight, int capacityOfPassengers){
         super(type, direction, 0, weight);
         this.capacityOfPassengers = capacityOfPassengers;
+        System.out.println(type + " создан");
     }
 
     @Override
@@ -31,8 +32,6 @@ public class Spaceship extends SpaceObject {
     public void speedUp(int times) {
         setSpeed(getSpeed()*times);
         engine.turnOn();
-        //фаер появляется
-
         System.out.println(this.getType() + " ускорился в " + times + " раз");
     }
 
@@ -43,22 +42,8 @@ public class Spaceship extends SpaceObject {
         System.out.println(this.getType() + " замедлился в " + times + " раз");
     }
 
-//    @Override
-//    public String makeCharacterName(Padezhy p) {
-//        String character = "";
-//        if (p==Padezhy.I){
-//            character = this.getType();
-//        }
-//        else if (p==Padezhy.R){
-//            character = "космического корабля";
-//        }
-//        else if (p==Padezhy.T){
-//            character = "космическим кораблем";
-//        }
-//        return character;
-//    }
-
     public void start(){
+        System.out.println(this.getType() + " пошел на взлет");
         this.state = State.FLY;
         this.speed += 10;
         while (this.speed<=1000){
@@ -67,9 +52,10 @@ public class Spaceship extends SpaceObject {
     }
 
     public void land(Direction where){
-        while (this.speed>0){
-            this.speed--;
+        while (this.speed>1){
+            this.speedDown(10);
         }
+        this.speed --;
         this.setDirection(direction);
         System.out.println(this.getType() +  " приземлился на " + where.getTitle());
     }
@@ -105,15 +91,24 @@ public class Spaceship extends SpaceObject {
 
 
 
-    public void addPassenger(AbstractHero passenger){
-        //сделать исключение если нет мест в ракете т е если последняя ячейка уже занята
-        int i = 0;
-        while (this.passengers[i]!=null){
-            i++;
+    public void addPassenger(AbstractHero passenger) throws NotEnoughPlaceInSpaceshipException {
+        if (this.passengers[capacityOfPassengers-1]!=null){
+            throw new NotEnoughPlaceInSpaceshipException("В ракете не достаточно места! Не поместившийся персонаж: ", passenger);
         }
-        this.passengers[i] = passenger;
+        else {
+            int i = 0;
+            while (this.passengers[i]!=null){
+                i++;
+            }
+            this.passengers[i] = passenger;
+        }
     }
 
+    public AbstractHero[] getPassengers(){
+        return this.passengers;
+    }
+
+    //вложенный класс
     public class JetEngine{
         int statement;
 
@@ -121,6 +116,7 @@ public class Spaceship extends SpaceObject {
             this.statement = 1;
 
             if (Math.random()<0.5){
+                //огонь - локальный класс
                 class Fire{
                     private float temperature;
                     {

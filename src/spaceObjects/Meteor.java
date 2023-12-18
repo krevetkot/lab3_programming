@@ -1,7 +1,6 @@
 package spaceObjects;
 
 import enums.Direction;
-import enums.Padezhy;
 
 public class Meteor extends SpaceObject{
     public Meteor(String type, Direction direction, int speed, int weight){

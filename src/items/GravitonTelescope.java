@@ -15,21 +15,25 @@ public class GravitonTelescope {
         this.location = location;
         this.direction = direction;
         System.out.println("гравитонный телескоп создан");
+
+        this.antenna = new GravitonTelescope.Antenna();
+        this.screen = new GravitonTelescope.Screen();
+        this.locator = new GravitonTelescope.Locator();
     }
 
     public void setDirection(Direction newDirection){
         this.direction = newDirection;
     }
 
-    public int[][] getInformationAboutObject(SpaceObject.Graviton graviton){
+    public int[][] getInformationAboutObject(SpaceObject.Graviton[] graviton){
         return new int[][]{this.screen.createCroockedLine(graviton), this.locator.turnOn(graviton)};
     }
 
-    public void assemble(GravitonTelescope.Antenna antenna, GravitonTelescope.Screen screen, GravitonTelescope.Locator locator){
-        this.antenna = antenna;
-        this.screen = screen;
-        this.locator = locator;
-    }
+//    public void assemble(GravitonTelescope.Antenna antenna, GravitonTelescope.Screen screen, GravitonTelescope.Locator locator){
+//        this.antenna = antenna;
+//        this.screen = screen;
+//        this.locator = locator;
+//    }
 
 
     public class Antenna {
@@ -38,16 +42,16 @@ public class GravitonTelescope {
             GravitonTelescope.this.direction = newDirection;
         }
 
-        protected int[] scan(SpaceObject.Graviton graviton){
+        protected int[] scan(SpaceObject.Graviton[] graviton){
             //вот сюда можно добавить ошибку: скорость/масса отрицательные
-            return graviton.getInf();
+            return graviton[0].getInf();
         }
 
     }
 
     public class Screen {
         //определяет массу объекта
-        public int[] createCroockedLine(SpaceObject.Graviton graviton){
+        public int[] createCroockedLine(SpaceObject.Graviton[] graviton){
             int weighOfObject = GravitonTelescope.this.antenna.scan(graviton)[1];
             int degreeOfCurvature = (weighOfObject*200);
             int XPlaceOnScreen = weighOfObject/55;
@@ -59,7 +63,7 @@ public class GravitonTelescope {
 
     public class Locator {
         //определяет расстояние до объекта и скорость
-        public int[] turnOn(SpaceObject.Graviton graviton){
+        public int[] turnOn(SpaceObject.Graviton[] graviton){
             int speedOfObject = GravitonTelescope.this.antenna.scan(graviton)[0];
             int distanceToObject = speedOfObject+(GravitonTelescope.this.location.hashCode());
             return new int[]{distanceToObject, speedOfObject};
