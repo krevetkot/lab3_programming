@@ -33,13 +33,12 @@ public abstract class SpaceObject implements Flyable{
     }
 
     public void setSpeed(int speed) {
-        //вот сюда можно добавить ошибку: скорость/масса отрицательные
         if (speed<0){
             throw new NegativeSpeedException("Ошибка: нельзя установить отрицательную скорость. Значение: ", speed);
         }
         this.speed = speed;
-        for (int i=0; i<COUNT_OF_GRAVITONS; i++){
-            gravitons[i].updateInf();
+        for (Graviton graviton: gravitons){
+            graviton.updateInf();
         }
     }
 

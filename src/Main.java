@@ -146,7 +146,7 @@ public class Main {
                     for (int i=0; i<10; i++){
                         this.setSize(this.getSize()+i);
                     }
-                    System.out.println("из гиганстских семян выросла " + this.getType() + '!');
+                    System.out.println("из гигантских семян выросла " + this.getType() + '!');
                 }
             });
 
@@ -184,6 +184,9 @@ public class Main {
         }
 
 //        spaceship1.setSpeed(-10);
+
+
+
 
     }
 }

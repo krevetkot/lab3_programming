@@ -43,7 +43,6 @@ public class GravitonTelescope {
         }
 
         protected int[] scan(SpaceObject.Graviton[] graviton){
-            //вот сюда можно добавить ошибку: скорость/масса отрицательные
             return graviton[0].getInf();
         }
 
